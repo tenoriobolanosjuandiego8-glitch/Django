@@ -1,0 +1,33 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Iniciar sesión · URBIX</title>
+<link rel="stylesheet" href="{% static 'usuarios/app.css' %}">
+</head>
+<body>
+  <div class="escena" aria-hidden="true">
+    <div class="calle"></div>
+    <div class="auto"></div><div class="auto"></div><div class="auto"></div>
+  </div>
+
+  <main class="tarjeta">
+    <div class="marca"><span>U</span>URBIX</div>
+    <h1>Bienvenido de nuevo</h1>
+    <p class="sub">Inicia sesión para ver tu panel de rutas.</p>
+
+    <form id="formLogin" novalidate>
+      <label for="correo">Correo</label>
+      <input id="correo" type="email" autocomplete="username" placeholder="tu@correo.com" required>
+      <label for="clave">Contraseña</label>
+      <input id="clave" type="password" autocomplete="current-password" placeholder="••••••••" required>
+      <button id="btnEntrar" type="submit">Iniciar sesión</button>
+    </form>
+    <div id="mensaje" class="mensaje" role="status"></div>
+  </main>
+
+<script src="{% static 'usuarios/app.js' %}"></script>
+</body>
+</html>

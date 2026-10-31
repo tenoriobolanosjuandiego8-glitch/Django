@@ -1,0 +1,49 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#183c36">
+    <title>{% block title %}Acceso de usuarios{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'usuarios/app.css' %}">
+</head>
+<body
+    data-page="{% block page_id %}{% endblock %}"
+    data-login-url="{% url 'login' %}"
+    data-panel-url="{% url 'panel' %}"
+    data-register-url="{% url 'api_registro' %}"
+    data-profile-url="{% url 'api_perfil' %}"
+    data-token-url="{% url 'token_obtain_pair' %}"
+    data-refresh-url="{% url 'token_refresh' %}"
+    data-blacklist-url="{% url 'token_blacklist' %}"
+>
+    <div class="app-shell">
+        <aside class="brand-rail" aria-label="Identidad del sistema">
+            <a class="brand" href="{% url 'login' %}">
+                <span class="brand-mark" aria-hidden="true">AU</span>
+                <span class="brand-name">Acceso<br>Usuarios</span>
+            </a>
+            <div class="rail-message">
+                <p class="rail-kicker">PORTAL DE CUENTAS</p>
+                <p class="rail-heading">Tu espacio,<br>en orden.</p>
+                <p class="rail-caption">Autenticación segura para tu cuenta y tus servicios.</p>
+            </div>
+            <div class="rail-footer">
+                <span class="status-dot" aria-hidden="true"></span>
+                <span>Servicio de usuarios</span>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="mobile-brand">
+                <span class="brand-mark" aria-hidden="true">AU</span>
+                <span class="brand-name">Acceso Usuarios</span>
+            </header>
+            {% block content %}{% endblock %}
+            <footer class="page-footer">Acceso de usuarios <span aria-hidden="true">·</span> Django</footer>
+        </main>
+    </div>
+    <script src="{% static 'usuarios/app.js' %}" defer></script>
+</body>
+</html>

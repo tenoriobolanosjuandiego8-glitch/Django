@@ -1,0 +1,109 @@
+{% load static %}<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel · SENA JWT</title>
+  <link rel="stylesheet" href="{% static 'usuarios/css/app.css' %}">
+</head>
+<body data-page="panel">
+  <!-- Esta página no trae datos del usuario: se llenan desde /api/perfil/ con el JWT. -->
+  <div class="layout">
+
+    <aside class="sidebar">
+      <div class="brand">SENA<span>·</span>JWT</div>
+
+      <div>
+        <div class="nav-title">Menú</div>
+        <nav class="nav">
+          <a href="#inicio" class="active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V21H3z"/><path d="M9 21v-7h6v7"/></svg>
+            Panel
+          </a>
+          <a href="#perfil">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+            Mi perfil
+          </a>
+          <a href="#seguridad">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg>
+            Seguridad
+          </a>
+        </nav>
+      </div>
+
+      <div class="sidebar-foot">Programa ADSO · Regional Cauca</div>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <div style="display:flex;align-items:center;gap:.75rem">
+          <button id="btnMenu" class="menu-btn" type="button" aria-label="Abrir menú">☰</button>
+          <h1>Panel de usuario</h1>
+        </div>
+        <div class="user-chip">
+          <div class="who" style="text-align:right">
+            <div id="userName" class="name">—</div>
+            <div class="role">Sesión JWT</div>
+          </div>
+          <div id="userAvatar" class="avatar">?</div>
+        </div>
+      </header>
+
+      <main class="content">
+        <div id="mensajePanel" class="alert" hidden></div>
+
+        <section id="inicio" class="card welcome">
+          <h2>¡Hola, <span id="saludo">—</span>!</h2>
+          <p id="pMensaje">Validando acceso...</p>
+        </section>
+
+        <section class="stats">
+          <div class="card stat">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div>
+            <div><div class="label">Usuario</div><div id="statUsuario" class="value">—</div></div>
+          </div>
+          <div class="card stat">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div>
+            <div><div class="label">Programa</div><div id="statPrograma" class="value">—</div></div>
+          </div>
+          <div class="card stat">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+            <div><div class="label">El token expira en</div><div id="statExpira" class="value">--:--</div></div>
+          </div>
+        </section>
+
+        <section class="two-cols">
+          <div id="perfil" class="card">
+            <h3>Mi perfil</h3>
+            <table class="data-table">
+              <tr><th>ID</th><td id="pId">—</td></tr>
+              <tr><th>Usuario</th><td id="pNombre">—</td></tr>
+              <tr><th>Correo</th><td id="pCorreo">—</td></tr>
+              <tr><th>Identificación</th><td id="pIdentificacion">—</td></tr>
+              <tr><th>Teléfono</th><td id="pTelefono">—</td></tr>
+              <tr><th>Programa</th><td id="pPrograma">—</td></tr>
+            </table>
+          </div>
+
+          <div id="seguridad" class="card">
+            <h3>Seguridad de la sesión</h3>
+            <p style="margin:0 0 .4rem">Access token: <span id="estadoToken" class="badge badge-success">Activo</span></p>
+            <div class="progress"><div id="barraToken"></div></div>
+            <p class="hint" style="margin:0 0 1rem">
+              El access token dura 15 minutos y vive solo en memoria. Si recargas la página, deberás iniciar sesión de nuevo.
+            </p>
+            <div class="actions">
+              <button id="btnRenovar" type="button" class="btn btn-outline">Renovar token</button>
+              <button id="btnSalir" type="button" class="btn btn-danger">Cerrar sesión</button>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <p class="footer-note">Práctica educativa · Django + JWT + SQL Server</p>
+    </div>
+
+  </div>
+  <script src="{% static 'usuarios/js/app.js' %}"></script>
+</body>
+</html>
